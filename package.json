@@ -1,5 +1,5 @@
 {
-  "name": "astraljs",
+  "name": "@astralstack/astraljs",
   "version": "1.0.0",
   "description": "A library to create secure API Rest fastly",
   "main": "src/index.ts",
