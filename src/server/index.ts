@@ -4,16 +4,14 @@ import express, {
   type Response,
   type NextFunction
 } from 'express'
+import { type Algorithm } from 'jsonwebtoken'
 
 export type RunningMessage = (port: number) => string
 
 export interface JWTSettings {
   secret: string | { refresh: string, access: string }
-  duration: string | { refresh: string, access: string } // TODO: create a type for duration and a function that make more secure enter a duration
-  /*
-  Example: JWTDuration(2, 'day')
-  */
-  algorithm: string // TODO: specify a secure type for the algorithm
+  duration: string | { refresh: string, access: string }
+  algorithm: Algorithm
 }
 
 export interface ServerSettings {
