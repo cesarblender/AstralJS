@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 
-export function Endpoint (path: string) {
+export function Controller (path: string) {
   // eslint-disable-next-line @typescript-eslint/ban-types
   return function (target: Function) {
     if (process.env.NODE_ENV !== 'production') {
