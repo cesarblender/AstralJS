@@ -1,6 +1,7 @@
 import 'reflect-metadata'
+import { type MiddlewareType } from '.'
 
-export function Controller (path: string) {
+export function Controller (path: string, version?: number) {
   // eslint-disable-next-line @typescript-eslint/ban-types
   return function (target: Function) {
     if (process.env.NODE_ENV !== 'production') {
@@ -12,8 +13,8 @@ export function Controller (path: string) {
       }
     }
 
-    Reflect.defineMetadata('isEndpoint', true, target)
     Reflect.defineMetadata('path', path, target)
+    if (version !== undefined) Reflect.defineMetadata('version', version, target)
   }
 }
 
@@ -66,4 +67,15 @@ export function HEAD (route?: string): MethodDecorator {
 
 export function OPTIONS (route?: string): MethodDecorator {
   return FactoryHTTPDecorator(HTTPMethods.OPTIONS, route)
+}
+
+export function Middleware (middlewares: MiddlewareType | MiddlewareType[]) {
+  return function (
+    target: any,
+    propertyKey?: string | symbol,
+    descriptor?: PropertyDescriptor
+  ) {
+    const middlewareArray = Array.isArray(middlewares) ? middlewares : [middlewares]
+    Reflect.defineMetadata('middlewares', middlewareArray, descriptor !== undefined ? descriptor.value : target)
+  }
 }
