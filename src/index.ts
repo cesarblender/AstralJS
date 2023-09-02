@@ -1,4 +1,4 @@
-export { JWTDuration } from './jwt/tokenManager'
+export { JWTDuration, TimeUnits } from './jwt/tokenManager'
 
 export { EnvError } from './custom/error'
 
