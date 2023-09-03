@@ -1,7 +1,10 @@
+import { type ControllerClass } from 'src'
 import { Server, type ServerSettings } from '../src/server'
 
 describe('MyServer', () => {
   class MyServer extends Server {
+    public controllers: ControllerClass[] = []
+
     public getSettings (): Partial<ServerSettings> {
       return {
         port: 9092
