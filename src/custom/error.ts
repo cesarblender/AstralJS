@@ -27,3 +27,18 @@ export class PathError extends Error {
     this.message = message
   }
 }
+
+/**
+ * Custom error class for router-related errors.
+ */
+export class RouterError extends Error {
+  /**
+   * Creates an instance of RouterError with a specific error message.
+   * @param {string} message - The error message describing the path error.
+   */
+  constructor (message: string) {
+    super()
+    this.name = 'Router Error'
+    this.message = message
+  }
+}

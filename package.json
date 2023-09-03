@@ -1,6 +1,6 @@
 {
   "name": "@astralstack/astraljs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A library to create secure API Rest fastly",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -8,7 +8,7 @@
     "test": "jest",
     "lint": "eslint src/**",
     "build": "tsc -p ./tsconfig.build.json",
-    "production:publish": "pnpm lint && pnpm test && pnpm build && pnpm publish --access public"
+    "production:publish": "pnpm lint && pnpm test && pnpm build"
   },
   "keywords": [
     "server",
