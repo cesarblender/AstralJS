@@ -16,12 +16,13 @@ export {
   FactoryHTTPDecorator,
   HTTPMethods,
   Middleware,
-  OPTIONS
+  OPTIONS,
+  pathRegex
 } from './server/controller'
 
 export { JWTDuration, TimeUnits } from './jwt/tokenManager'
 
-export { EnvError } from './custom/error'
+export { EnvError, PathError } from './custom/error'
 
 export { getEnv } from './utils/env'
 
