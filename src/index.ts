@@ -23,7 +23,7 @@ export { JWTDuration, TimeUnits } from './jwt/tokenManager'
 
 export { EnvError } from './custom/error'
 
-export { getEnv as env } from './utils/env'
+export { getEnv } from './utils/env'
 
 export {
   Server,
