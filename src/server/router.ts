@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { type MiddlewareType } from '.'
 import { type HTTPMethods } from './controller'
+import { posix } from 'path'
 
 /**
  * Represents a class constructor for controllers.
@@ -101,7 +102,7 @@ export function router (endpoints: ControllerClass[]): Router {
         ...(endpoint.middlewares ?? [])
       ]
       appRouter[endpoint.method](
-        controller.path + (endpoint.route ?? ''),
+        posix.join(controller.path, endpoint.route ?? ''),
         ...allMiddlewares,
         (req, res) => res.send(endpoint.handler())
       )
