@@ -21,7 +21,7 @@ export function Controller (path: string, version?: number): ClassDecorator {
   return function (target: Function) {
     if (!pathRegex.test(path)) {
       throw new PathError(
-        `❌ Illegal characters in path '${path}'. Verify if the path starts with '/' and does no end with '/'\nAllowed Characters: [a-z A-Z 0-9 . : - _ ; ,]`
+        `❌ Illegal characters in path '${path}' of the controller ${target.name}. Verify if the path starts with '/' and does no end with '/'\nAllowed Characters: [a-z A-Z 0-9 . : - _ ; ,]`
       )
     }
     Reflect.defineMetadata('path', path, target)
@@ -56,7 +56,7 @@ export function FactoryHTTPDecorator (method: string, route?: string) {
   ) {
     if (route !== undefined && route.length > 0 && !pathRegex.test(route)) {
       throw new PathError(
-        `❌ Illegal characters in path '${route}'. Verify if the path starts with '/' and does no end with '/'\nAllowed Characters: [a-z A-Z 0-9 . : - _ ; ,]`
+        `❌ Illegal characters in route '${route}' of the method ${target.name}. Verify if the path starts with '/' and does no end with '/'\nAllowed Characters: [a-z A-Z 0-9 . : - _ ; ,]`
       )
     }
 
