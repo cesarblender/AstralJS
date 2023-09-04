@@ -3,7 +3,8 @@ export {
   router,
   type ControllerClass,
   type ControllerType,
-  type EndpointType
+  type EndpointType,
+  type HandlerData
 } from './server/router'
 
 export {

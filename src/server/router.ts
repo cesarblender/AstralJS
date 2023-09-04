@@ -9,6 +9,15 @@ import { posix } from 'path'
 export type ControllerClass = new () => any
 
 /**
+ * Represents the return type for a controller method.
+ */
+export interface HandlerData {
+  data: unknown
+  status: number
+  customReturn?: boolean
+}
+
+/**
  * Represents an individual endpoint definition for a controller.
  */
 export interface EndpointType {
@@ -104,7 +113,11 @@ export function router (endpoints: ControllerClass[]): Router {
       appRouter[endpoint.method](
         posix.join(controller.path, endpoint.route ?? ''),
         ...allMiddlewares,
-        (req, res) => res.send(endpoint.handler())
+        (req, res) => {
+          const handlerData: HandlerData = endpoint.handler(req, res) as HandlerData
+
+          if (handlerData.customReturn !== true) return res.json(handlerData)
+        }
       )
     })
   })
