@@ -1,0 +1,5 @@
+__tests__/
+src/
+.github/
+
+jest.config.js

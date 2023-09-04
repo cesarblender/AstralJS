@@ -14,7 +14,6 @@ export type ControllerClass = new () => any
 export interface HandlerData {
   data: unknown
   status: number
-  customReturn?: boolean
 }
 
 /**
@@ -114,9 +113,9 @@ export function router (endpoints: ControllerClass[]): Router {
         posix.join(controller.path, endpoint.route ?? ''),
         ...allMiddlewares,
         (req, res) => {
-          const handlerData: HandlerData = endpoint.handler(req, res) as HandlerData
+          const handlerData: HandlerData | undefined = endpoint.handler(req, res) as HandlerData
 
-          if (handlerData.customReturn !== true) return res.json(handlerData)
+          if (handlerData !== undefined) return res.json(handlerData)
         }
       )
     })
