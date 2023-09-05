@@ -35,7 +35,7 @@ describe('parseRoutes', () => {
 describe('router', () => {
   it('should configure routes correctly', () => {
     const controllers: ControllerClass[] = [ExampleController]
-    const appRouter = router(controllers)
+    const appRouter = router(controllers, false, '')
 
     expect(appRouter.stack).toHaveLength(1)
   })

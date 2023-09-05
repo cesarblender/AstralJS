@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { type ControllerType } from 'src/server/router'
+import { type ControllerType } from '../server/router'
 
 export function genDocs (controllers: ControllerType[], apiDocsPath: string): Router {
   const router = Router()

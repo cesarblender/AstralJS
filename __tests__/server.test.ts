@@ -1,4 +1,4 @@
-import { type ControllerClass } from 'src'
+import { type ControllerClass } from '../src'
 import { Server, type ServerSettings } from '../src/server'
 
 describe('MyServer', () => {

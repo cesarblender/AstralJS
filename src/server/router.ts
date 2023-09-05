@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { type MiddlewareType } from '.'
 import { type HTTPMethods } from './controller'
 import { posix } from 'path'
-import { genDocs } from 'src/docs/genDocs'
+import { genDocs } from '../docs/genDocs'
 
 /**
  * Represents a class constructor for controllers.
