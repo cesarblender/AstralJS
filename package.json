@@ -10,6 +10,14 @@
     "build": "tsc -p ./tsconfig.build.json",
     "production:publish": "pnpm lint && pnpm test && pnpm build"
   },
+  "repository": {
+    "url": "https://github.com/seokkuuu/AstralJS",
+    "type": "git"
+  },
+  "displayName": "AstralJS",
+  "homepage": "https://github.com/seokkuuu/AstralJS/wiki/GettingStarted",
+  "packageManager": "pnpm@8.6.12",
+  "readme": "./README.md",
   "keywords": [
     "server",
     "rest",
