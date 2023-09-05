@@ -29,6 +29,7 @@ export interface JWTSettings {
 export interface ServerSettings {
   port: number
   apiDocumentation: boolean
+  apiDocsPath: string
   jwt: JWTSettings | false
   runningMessage: RunningMessage
 }
@@ -77,7 +78,8 @@ export abstract class Server {
       port: 3000,
       apiDocumentation: false,
       runningMessage: (port) => `Server running at http://localhost:${port}/`,
-      jwt: false
+      jwt: false,
+      apiDocsPath: '/api/docs'
     }
     this.settings = { ...defaultSettings, ...this.getSettings() }
 
@@ -119,7 +121,7 @@ export abstract class Server {
       )
     }
 
-    this.app.use(router(this.controllers))
+    this.app.use(router(this.controllers, this.settings.apiDocumentation, this.settings.apiDocsPath))
   }
 
   /**

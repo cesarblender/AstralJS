@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { type MiddlewareType } from '.'
 import { type HTTPMethods } from './controller'
 import { posix } from 'path'
+import { genDocs } from 'src/docs/genDocs'
 
 /**
  * Represents a class constructor for controllers.
@@ -98,10 +99,16 @@ export function parseRoutes (endpoints: ControllerClass[]): ControllerType[] {
  * @param {ControllerClass[]} endpoints - An array of controller classes.
  * @returns {Router} An Express Router with configured routes.
  */
-export function router (endpoints: ControllerClass[]): Router {
+export function router (
+  endpoints: ControllerClass[],
+  apiDocumentation: boolean,
+  apiDocsPath: string
+): Router {
   const controllers = parseRoutes(endpoints)
 
   const appRouter = Router()
+
+  if (apiDocumentation) appRouter.use(genDocs(controllers, apiDocsPath))
 
   controllers.forEach((controller) => {
     controller.endpoints.forEach((endpoint) => {
@@ -113,7 +120,10 @@ export function router (endpoints: ControllerClass[]): Router {
         posix.join(controller.path, endpoint.route ?? ''),
         ...allMiddlewares,
         (req, res) => {
-          const handlerData: HandlerData | undefined = endpoint.handler(req, res) as HandlerData
+          const handlerData: HandlerData | undefined = endpoint.handler(
+            req,
+            res
+          ) as HandlerData
 
           if (handlerData !== undefined) return res.json(handlerData)
         }
