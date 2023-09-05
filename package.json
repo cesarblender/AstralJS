@@ -15,7 +15,7 @@
     "type": "git"
   },
   "displayName": "AstralJS",
-  "homepage": "https://github.com/seokkuuu/AstralJS/wiki/GettingStarted",
+  "homepage": "https://github.com/seokkuuu/AstralJS/wiki/Getting-Started",
   "packageManager": "pnpm@8.6.12",
   "readme": "./README.md",
   "keywords": [
