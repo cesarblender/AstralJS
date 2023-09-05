@@ -3,6 +3,7 @@ import { type MiddlewareType } from '.'
 import { type HTTPMethods } from './controller'
 import { posix } from 'path'
 import { genDocs } from '../docs/genDocs'
+import { type SetupDocsSettings } from '../docs/decorators'
 
 /**
  * Represents a class constructor for controllers.
@@ -26,6 +27,7 @@ export interface EndpointType {
   middlewares?: MiddlewareType[]
   // eslint-disable-next-line @typescript-eslint/ban-types
   handler: Function
+  docsSettings?: SetupDocsSettings
 }
 
 /**
@@ -36,6 +38,7 @@ export interface ControllerType {
   endpoints: EndpointType[]
   version?: number
   middlewares?: MiddlewareType[]
+  docsSettings?: SetupDocsSettings
 }
 
 /**
@@ -77,7 +80,20 @@ export function parseRoutes (endpoints: ControllerClass[]): ControllerType[] {
           method
         ) as MiddlewareType[] | undefined,
         // eslint-disable-next-line new-cap
-        handler: new controller()[method]
+        handler: new controller()[method],
+        // Automated docs
+        docsSettings: {
+          description: Reflect.getMetadata(
+            'description',
+            controller.prototype,
+            method
+          ) as string,
+          title: Reflect.getMetadata(
+            'title',
+            controller.prototype,
+            method
+          ) as string
+        }
       })
     })
 
@@ -87,7 +103,18 @@ export function parseRoutes (endpoints: ControllerClass[]): ControllerType[] {
         | MiddlewareType[]
         | undefined,
       version: Reflect.getMetadata('version', controller) as number | undefined,
-      endpoints: controllerEndpoints
+      endpoints: controllerEndpoints,
+      // Automated docs
+      docsSettings: {
+        description: Reflect.getMetadata(
+          'description',
+          controller
+        ) as string,
+        title: Reflect.getMetadata(
+          'title',
+          controller
+        ) as string
+      }
     })
   })
 
