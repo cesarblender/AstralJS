@@ -1,3 +1,6 @@
+export { SetupDocs, type SetupDocsSettings } from './docs/decorators'
+export { genDocs } from './docs/genDocs'
+
 export {
   parseRoutes,
   router,
