@@ -3,3 +3,7 @@ src/
 .github/
 
 jest.config.js
+
+docs/
+!docs/dist/
+!docs/public/

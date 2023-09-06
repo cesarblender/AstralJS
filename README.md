@@ -1,4 +1,4 @@
-# AstralJS
+# <img src="./docs/public/favicon.ico" alt="AstralJS Logo" style="height: 30px" /> AstralJS
 
 AstralJS is a powerful and flexible web application framework built on top of Express.js. It provides a foundation for developing web applications with features such as automated documentation, authentication, and more. With AstralJS, you can streamline your web development process and create robust applications efficiently.
 
