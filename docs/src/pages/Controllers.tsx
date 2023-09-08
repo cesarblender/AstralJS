@@ -1,4 +1,4 @@
-import { AppBar } from "./components/AppBar";
+import { AppBar } from "../components/AppBar";
 
 interface Controller {
   name: string
@@ -8,16 +8,16 @@ interface Controller {
 function ControllerCards() {
   const controllers: Controller[] = [
     {
-      name: "AuthController",
-      endpointsCount: 9
-    },
-    {
-      name: "SampleController",
-      endpointsCount: 92
-    },
-    {
-      name: "SampleController2",
+      name: "Auth",
       endpointsCount: 2
+    },
+    {
+      name: "To Do",
+      endpointsCount: 4
+    },
+    {
+      name: "Notifications",
+      endpointsCount: 3
     }
   ];
 
@@ -39,7 +39,7 @@ function ControllerCards() {
   )
 }
 
-export default function App() {
+export function Controllers() {
   return (
     <div className="bg-gray-950 w-full min-h-screen">
       <AppBar />
