@@ -10,7 +10,7 @@ export class EnvError extends Error {
    */
   constructor (message: string) {
     super()
-    this.name = chalk.bgYellowBright.bold('Environment Variable Error')
+    this.name = chalk.bgYellowBright.bold.black('Environment Variable Error')
     this.message = message
   }
 }
@@ -25,7 +25,7 @@ export class PathError extends Error {
    */
   constructor (message: string) {
     super()
-    this.name = chalk.bgYellowBright('Path Error')
+    this.name = chalk.bgYellowBright.bold.black('Path Error')
     this.message = message
   }
 }
@@ -40,7 +40,7 @@ export class RouterError extends Error {
    */
   constructor (message: string) {
     super()
-    this.name = chalk.bgMagentaBright.bold('Router Error')
+    this.name = chalk.bgMagentaBright.bold.black('Router Error')
     this.message = message
   }
 }
@@ -55,7 +55,7 @@ export class FatalError extends Error {
    */
   constructor (message: string) {
     super()
-    this.name = chalk.bgRedBright.bold('FATAL ERROR')
+    this.name = chalk.bgRedBright.bold.black('FATAL ERROR')
     this.message = message
   }
 }
