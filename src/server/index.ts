@@ -6,6 +6,7 @@ import express, {
 } from 'express'
 import { type Algorithm } from 'jsonwebtoken'
 import { router, type ControllerClass } from './router'
+import { requestLogger } from 'src/middlewares/requestLogger'
 
 /**
  * Represents a message function that returns a message indicating the server is running.
@@ -32,6 +33,7 @@ export interface ServerSettings {
   apiDocsPath: string
   jwt: JWTSettings | false
   runningMessage: RunningMessage
+  logRequests: boolean
 }
 
 /**
@@ -79,13 +81,16 @@ export abstract class Server {
       apiDocumentation: false,
       runningMessage: (port) => `Server running at http://localhost:${port}/`,
       jwt: false,
-      apiDocsPath: '/api/docs'
+      apiDocsPath: '/api/docs',
+      logRequests: true
     }
     this.settings = { ...defaultSettings, ...this.getSettings() }
 
     this.middlewares = []
 
     this.app = express()
+
+    if (this.settings.logRequests) this.app.use(requestLogger)
   }
 
   /**
