@@ -17,6 +17,10 @@
     "declarationMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@types": ["src/definitions"]
+    }
   },
   "compileOnSave": true,
   "include": ["."]
