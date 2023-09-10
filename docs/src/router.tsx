@@ -1,6 +1,7 @@
 import { createBrowserRouter, useLoaderData } from "react-router-dom";
 
 import { Controllers } from "./pages/Controllers";
+import { Controller } from "./pages/Controller";
 
 // const A = () => {
 //   const data = useLoaderData() as any;
@@ -18,11 +19,11 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Controllers />,
   },
-//   {
-//     path: "/controller/:controller_id",
-//     element: <A />,
-//     loader: ({ params }) => params,
-//   },
+  {
+    path: "/controller/:controller_id",
+    element: <Controller />,
+    loader: ({ params }) => params,
+  },
 //   {
 //     path: "/endpoint/:endpoint_id",
 //     element: <A />,
