@@ -7,6 +7,7 @@ import express, {
 import { type Algorithm } from 'jsonwebtoken'
 import { router, type ControllerClass } from './router'
 import { requestLogger } from '../middlewares/requestLogger'
+import chalk from 'chalk'
 
 /**
  * Represents a message function that returns a message indicating the server is running.
@@ -74,7 +75,7 @@ export abstract class Server {
     const defaultSettings: ServerSettings = {
       port: 3000,
       apiDocumentation: false,
-      runningMessage: (port) => `Server running at http://localhost:${port}/`,
+      runningMessage: (port) => `${chalk.bgGreenBright(`Server running at http://localhost:${port}/`)}`,
       jwt: false,
       apiDocsPath: '/api/docs',
       logRequests: true

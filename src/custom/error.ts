@@ -1,3 +1,5 @@
+import chalk from 'chalk'
+
 /**
  * Custom error class for environment variable-related errors.
  */
@@ -8,7 +10,7 @@ export class EnvError extends Error {
    */
   constructor (message: string) {
     super()
-    this.name = 'Environment Variable Error'
+    this.name = chalk.bgYellowBright.bold('Environment Variable Error')
     this.message = message
   }
 }
@@ -23,7 +25,7 @@ export class PathError extends Error {
    */
   constructor (message: string) {
     super()
-    this.name = 'Path Error'
+    this.name = chalk.bgYellowBright('Path Error')
     this.message = message
   }
 }
@@ -38,7 +40,22 @@ export class RouterError extends Error {
    */
   constructor (message: string) {
     super()
-    this.name = 'Router Error'
+    this.name = chalk.bgMagentaBright.bold('Router Error')
+    this.message = message
+  }
+}
+
+/**
+ * Custom error class for fatal errors.
+ */
+export class FatalError extends Error {
+  /**
+   * Creates an instance of RouterError with a specific error message.
+   * @param {string} message - The error message describing the path error.
+   */
+  constructor (message: string) {
+    super()
+    this.name = chalk.bgRedBright.bold('FATAL ERROR')
     this.message = message
   }
 }
