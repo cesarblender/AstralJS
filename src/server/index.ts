@@ -53,11 +53,6 @@ export type MiddlewareType = (
  */
 export abstract class Server {
   /**
-   * An array of global middleware functions to apply to the server.
-   */
-  public readonly middlewares: MiddlewareType[]
-
-  /**
    * Server settings.
    */
   public readonly settings: ServerSettings
@@ -85,8 +80,6 @@ export abstract class Server {
       logRequests: true
     }
     this.settings = { ...defaultSettings, ...this.getSettings() }
-
-    this.middlewares = []
 
     this.app = express()
 

@@ -18,8 +18,6 @@ describe('MyServer', () => {
         console.log('Everything well')
         next()
       })
-
-      this.implementMiddlewares()
     }
   }
 
@@ -31,10 +29,5 @@ describe('MyServer', () => {
   it('should have custom port 9092', () => {
     const myServer = new MyServer()
     expect(myServer.settings.port).toBe(9092)
-  })
-
-  it('should have more than one middleware', () => {
-    const myServer = new MyServer()
-    expect(myServer.middlewares.length).toBeGreaterThanOrEqual(1)
   })
 })
