@@ -99,16 +99,7 @@ export abstract class Server {
    * @param {MiddlewareType} middleware - The middleware function to add.
    */
   protected addMiddleware (middleware: MiddlewareType): void {
-    this.middlewares.push(middleware)
-  }
-
-  /**
-   * Implements the middleware functions on the server.
-   */
-  protected implementMiddlewares (): void {
-    this.middlewares.forEach((middleware) => {
-      this.app.use(middleware)
-    })
+    this.app.use(middleware)
   }
 
   /**
