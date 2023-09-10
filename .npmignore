@@ -3,6 +3,8 @@ src/
 .github/
 
 jest.config.js
+.eslintrc.js
+ROADMAP.md
 
 docs/
 !docs/dist/

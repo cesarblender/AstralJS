@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2015",
     "types": ["node", "jest"],
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": ".",
+    "rootDir": ".",
     "noFallthroughCasesInSwitch": true,
     "outDir": "./dist",
     "declarationDir": "./dist/types",
@@ -19,5 +20,4 @@
     "experimentalDecorators": true,
   },
   "compileOnSave": true,
-  "include": ["."]
 }
