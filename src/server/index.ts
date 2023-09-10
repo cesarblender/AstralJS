@@ -6,7 +6,7 @@ import express, {
 } from 'express'
 import { type Algorithm } from 'jsonwebtoken'
 import { router, type ControllerClass } from './router'
-import { requestLogger } from 'src/middlewares/requestLogger'
+import { requestLogger } from '../middlewares/requestLogger'
 
 /**
  * Represents a message function that returns a message indicating the server is running.
