@@ -75,10 +75,6 @@ We welcome contributions from the community. If you have ideas for improvements 
 
 AstralJS is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
-## Contact
-
-For questions or inquiries, feel free to reach out to [AstralStack](your-email@example.com).
-
 ---
 
 Thank you for choosing AstralJS for your web development projects!
