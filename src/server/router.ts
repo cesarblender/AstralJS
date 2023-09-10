@@ -146,8 +146,8 @@ export function router (
       appRouter[endpoint.method](
         posix.join(controller.path, endpoint.route ?? ''),
         ...allMiddlewares,
-        (req, res) => {
-          const handlerData: HandlerData | undefined = endpoint.handler(
+        async (req, res) => {
+          const handlerData: HandlerData | undefined = await endpoint.handler(
             req,
             res
           ) as HandlerData
