@@ -146,13 +146,22 @@ export function router (
       appRouter[endpoint.method](
         posix.join(controller.path, endpoint.route ?? ''),
         ...allMiddlewares,
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
         async (req, res) => {
-          const handlerData: HandlerData | undefined = await endpoint.handler(
-            req,
-            res
-          ) as HandlerData
+          try {
+            const handlerData: HandlerData | undefined = await endpoint.handler(
+              req,
+              res
+            ) as HandlerData
 
-          if (handlerData !== undefined) return res.json(handlerData)
+            if (handlerData !== undefined) {
+              res.json(handlerData)
+            }
+          } catch (error) {
+            // Manejar cualquier error que pueda ocurrir en endpoint.handler
+            console.error(error)
+            res.status(500).json({ error: 'Internal Server Error' })
+          }
         }
       )
     })
