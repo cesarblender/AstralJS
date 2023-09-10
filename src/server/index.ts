@@ -8,6 +8,7 @@ import { type Algorithm } from 'jsonwebtoken'
 import { router, type ControllerClass } from './router'
 import { requestLogger } from '../middlewares/requestLogger'
 import chalk from 'chalk'
+import { FatalError } from '../custom/error'
 
 /**
  * Represents a message function that returns a message indicating the server is running.
@@ -32,7 +33,6 @@ export interface ServerSettings {
   port: number
   apiDocumentation: boolean
   apiDocsPath: string
-  jwt: JWTSettings | false
   runningMessage: RunningMessage
   logRequests: boolean
 }
@@ -76,7 +76,6 @@ export abstract class Server {
       port: 3000,
       apiDocumentation: false,
       runningMessage: (port) => `${chalk.bgGreenBright(`Server running at http://localhost:${port}/`)}`,
-      jwt: false,
       apiDocsPath: '/api/docs',
       logRequests: true
     }
@@ -104,9 +103,9 @@ export abstract class Server {
   /**
    * Implements the router for handling API routes.
    */
-  protected implementRouter (): void {
+  private implementRouter (): void {
     if (this.controllers === undefined) {
-      throw new Error(
+      throw new FatalError(
         'No controllers were found. In the main server class overwrite the controllers param.'
       )
     }
@@ -119,10 +118,12 @@ export abstract class Server {
    */
   public bootstrap (): void {
     if (this.settings.port === undefined) {
-      throw new Error('Server port is not defined')
+      throw new FatalError('Server port is not defined')
     }
 
     const runningMessage = this.settings.runningMessage
+
+    this.implementRouter()
 
     this.app.listen(this.settings.port, () => {
       if (runningMessage !== undefined) {
