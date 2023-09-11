@@ -1,3 +1,10 @@
-import createServer from './server'
-
-export default createServer
+export { createServer, defaultSettings } from './server'
+export { runningMessage } from '@messages'
+export type { CreateServer, Request, ServerSettings } from '@types'
+export { ipv4Parser } from '@middlewares/ipv4Parser'
+export { requestLogger } from '@middlewares/requestLogger'
+export { sqlInjectionProtection } from '@middlewares/sqlInjectionProtection'
+export { xssProtection } from '@middlewares/xssProtection'
+export { getLocalIpAddress } from '@utils/getLocalIp'
+export { setupMiddlewares } from '@utils/setupMiddlewares'
+export type { Response, NextFunction } from 'express'
