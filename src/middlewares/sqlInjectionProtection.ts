@@ -2,7 +2,11 @@ import { NextFunction, Response } from 'express'
 
 import { Request } from '@/definitions'
 
-export function sqlInjectionProtection(req: Request, res: Response, next: NextFunction) {
+export function sqlInjectionProtection(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) {
     sanitizeRequestData(req.body)
     sanitizeRequestData(req.query)
     sanitizeRequestData(req.params)
@@ -16,9 +20,7 @@ function sanitizeRequestData(data: Record<string, any>) {
             if (Object.prototype.hasOwnProperty.call(data, key)) {
                 if (typeof data[key] === 'string') {
                     if (containsSQLInjection(data[key])) {
-                        throw new Error(
-                            'SQL Injection attack detected.',
-                        )
+                        throw new Error('SQL Injection attack detected.')
                     }
                 } else if (typeof data[key] === 'object') {
                     sanitizeRequestData(data[key])

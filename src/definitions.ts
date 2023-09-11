@@ -1,4 +1,7 @@
+import { CompressionOptions } from 'compression'
 import { Application, Request as ExpressRequest } from 'express'
+import { ExpressStaticGzipOptions } from 'express-static-gzip'
+import { HelmetOptions } from 'helmet'
 
 export interface CreateServer {
     start(): void
@@ -16,10 +19,17 @@ export interface ServerSettings {
     errorLogger(errorMessage: string): void
     responseStructure(data: unknown, status: number, message?: string): object
     errorResponseStructure(message: string, status: number): object
-    staticPath?: string
-    ipv4Parser?: boolean
-    xssProtection?: boolean
-    sqlInjectionProtection?: boolean
+    ipv4Parser: boolean
+    xssProtection: boolean
+    sqlInjectionProtection: boolean
+    helmet: boolean
+    compression: boolean
+    helmetSettings?: Readonly<HelmetOptions>
+    compressionSettings?: CompressionOptions
+    static?: {
+        path: string
+        settings: ExpressStaticGzipOptions
+    }
 }
 
 export type Request = ExpressRequest & { ipv4?: string }
