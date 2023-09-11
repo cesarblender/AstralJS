@@ -1,4 +1,4 @@
-import { Application } from 'express'
+import { Application, Request as ExpressRequest } from 'express'
 
 export interface CreateServer {
     start(): void
@@ -12,9 +12,12 @@ export interface ServerSettings {
     docsPath: string
     requestLogger: boolean
     jsonParser: boolean
-    staticPath: string
     urlencoded: boolean
     errorLogger(errorMessage: string): void
     responseStructure(data: unknown, status: number, message?: string): object
     errorResponseStructure(message: string, status: number): object
+    staticPath?: string
+    ipv4Parser?: boolean
 }
+
+export type Request = ExpressRequest & { ipv4?: string }
