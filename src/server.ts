@@ -8,6 +8,7 @@ import { custom404 } from '@middlewares/404'
 import { requestLogger } from '@middlewares/requestLogger'
 import { ipv4Parser } from '@middlewares/ipv4Parser'
 import { xssProtection } from '@middlewares/xssProtection'
+import { sqlInjectionProtection } from '@middlewares/sqlInjectionProtection'
 
 const defaultSettings: ServerSettings = {
     docs: true,
@@ -17,7 +18,7 @@ const defaultSettings: ServerSettings = {
         return { message, status }
     },
     jsonParser: true,
-    port: 6000,
+    port: 3000,
     requestLogger: true,
     responseStructure(data, status, message) {
         return { data, status, message }
@@ -25,7 +26,8 @@ const defaultSettings: ServerSettings = {
     staticPath: undefined,
     urlencoded: true,
     ipv4Parser: true,
-    xssProtection: true
+    xssProtection: true,
+    sqlInjectionProtection: true,
 }
 
 /**
@@ -46,8 +48,9 @@ export default function createServer(
     if (settings.ipv4Parser) app.use(ipv4Parser)
     if (settings.requestLogger) app.use(requestLogger)
     if (settings.jsonParser) app.use(express.json())
-    if (settings.urlencoded) app.use(express.urlencoded())
+    if (settings.urlencoded) app.use(express.urlencoded({ extended: true }))
     if (settings.xssProtection) app.use(xssProtection)
+    if (settings.sqlInjectionProtection) app.use(sqlInjectionProtection)
 
     // Router
     // TODO: implement a router
@@ -86,5 +89,3 @@ export default function createServer(
         app,
     }
 }
-
-createServer().start()

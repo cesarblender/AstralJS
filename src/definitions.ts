@@ -19,6 +19,7 @@ export interface ServerSettings {
     staticPath?: string
     ipv4Parser?: boolean
     xssProtection?: boolean
+    sqlInjectionProtection?: boolean
 }
 
 export type Request = ExpressRequest & { ipv4?: string }
