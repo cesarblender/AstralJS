@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "target": "es2015",
+        "target": "ES2015",
         "types": ["node", "jest"],
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "esModuleInterop": true,
-        "module": "commonjs",
+        "module": "CommonJS",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
@@ -19,7 +19,11 @@
         "experimentalDecorators": true,
         "paths": {
             "@/*": ["src/*"],
-            "@types": ["src/definitions"]
+            "@middlewares/*": ["src/middlewares/*"],
+            "@utils/*": ["src/utils/*"],
+            "@types": ["src/definitions"],
+            "@messages": ["src/messages"],
+            "@server": ["src/server"]
         }
     },
     "compileOnSave": true,
