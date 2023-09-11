@@ -7,6 +7,7 @@ import { runningMessage } from '@messages'
 import { custom404 } from '@middlewares/404'
 import { requestLogger } from '@middlewares/requestLogger'
 import { ipv4Parser } from '@middlewares/ipv4Parser'
+import { xssProtection } from '@middlewares/xssProtection'
 
 const defaultSettings: ServerSettings = {
     docs: true,
@@ -23,7 +24,8 @@ const defaultSettings: ServerSettings = {
     },
     staticPath: undefined,
     urlencoded: true,
-    ipv4Parser: true
+    ipv4Parser: true,
+    xssProtection: true
 }
 
 /**
@@ -45,6 +47,7 @@ export default function createServer(
     if (settings.requestLogger) app.use(requestLogger)
     if (settings.jsonParser) app.use(express.json())
     if (settings.urlencoded) app.use(express.urlencoded())
+    if (settings.xssProtection) app.use(xssProtection)
 
     // Router
     // TODO: implement a router

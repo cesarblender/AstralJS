@@ -18,6 +18,7 @@ export interface ServerSettings {
     errorResponseStructure(message: string, status: number): object
     staticPath?: string
     ipv4Parser?: boolean
+    xssProtection?: boolean
 }
 
 export type Request = ExpressRequest & { ipv4?: string }
