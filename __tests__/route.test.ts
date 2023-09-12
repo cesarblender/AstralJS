@@ -18,7 +18,7 @@ describe('Server Integration Test', () => {
             },
         })
 
-        server = createServer({endpoints: [endpoint]})
+        server = createServer({endpoints: [endpoint], port: 5402})
     })
 
     afterEach((done) => {

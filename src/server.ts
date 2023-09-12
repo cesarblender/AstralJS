@@ -50,6 +50,8 @@ export function createServer(
                 settings.errorLogger,
                 settings.errorResponseStructure,
                 settings.responseStructure,
+                settings.docs,
+                settings.docsPath,
             ),
         )
 

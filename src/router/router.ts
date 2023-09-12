@@ -13,8 +13,14 @@ export function router(
         data?: unknown,
         message?: string,
     ) => object,
+    useDocs?: boolean,
+    docsPath?: string,
 ): Router {
     const router = Router()
+
+    if (useDocs && docsPath) router.get(docsPath, (req, res) => {
+        res.json(endpoints)
+    })
 
     endpoints.forEach((endpoint) => {
         // TODO: add a middleware to protect with jwt in case of having the setting protected: true
