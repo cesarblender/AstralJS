@@ -1,33 +1,32 @@
-import { type ControllerClass } from '../src'
-import { Server, type ServerSettings } from '../src/server'
+import { CreateServer } from '@/definitions'
+import { createServer, defaultSettings } from '@/server'
+import request from 'supertest'
 
-describe('MyServer', () => {
-  class MyServer extends Server {
-    public controllers: ControllerClass[] = []
+describe('createServer', () => {
+    let server: CreateServer
 
-    public getSettings (): Partial<ServerSettings> {
-      return {
-        port: 9092
-      }
-    }
+    beforeAll(() => {
+        server = createServer()
+    })
 
-    constructor () {
-      super()
+    afterAll((done) => {
+        server.stop()
+        done()
+    })
 
-      this.addMiddleware((req, res, next) => {
-        console.log('Everything well')
-        next()
-      })
-    }
-  }
+    it('should start the server', async () => {
+        const response = await request(server.app).get('/')
+        expect(response.status).toBe(404)
+    })
 
-  it('should create an instance of MyServer', () => {
-    const myServer = new MyServer()
-    expect(myServer).toBeInstanceOf(MyServer)
-  })
-
-  it('should have custom port 9092', () => {
-    const myServer = new MyServer()
-    expect(myServer.settings.port).toBe(9092)
-  })
+    it('should start the server with custom settings', async () => {
+        const customSettings = {
+            ...defaultSettings,
+            port: 5400,
+        }
+        const customServer = createServer(customSettings)
+        const response = await request(customServer.app).get('/')
+        expect(response.status).toBe(404)
+        customServer.stop()
+    })
 })

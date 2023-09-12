@@ -1,23 +1,32 @@
 {
-  "compilerOptions": {
-    "target": "es2015",
-    "types": ["node", "jest"],
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "baseUrl": ".",
-    "noFallthroughCasesInSwitch": true,
-    "outDir": "./dist",
-    "declarationDir": "./dist/types",
-    "declaration": true,
-    "declarationMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-  },
-  "compileOnSave": true,
-  "include": ["."]
+    "compilerOptions": {
+        "target": "ES2015",
+        "types": ["node", "jest"],
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "baseUrl": ".",
+        "noFallthroughCasesInSwitch": true,
+        "outDir": "./dist",
+        "declarationDir": "./dist/types",
+        "declaration": true,
+        "declarationMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "paths": {
+            "@/*": ["src/*"],
+            "@middlewares/*": ["src/middlewares/*"],
+            "@utils/*": ["src/utils/*"],
+            "@types": ["src/definitions"],
+            "@messages": ["src/messages"],
+            "@server": ["src/server"],
+            "@errors": ["src/errors"]
+        }
+    },
+    "compileOnSave": true,
+    "include": ["."]
 }
