@@ -86,7 +86,7 @@ export type Controller<BodyType> = (
 
 export interface ControllerSettings {
     middlewares?: Middleware[]
-    bodyScheme?: object
+    bodySchema?: object
     protected?: boolean
     version?: number
     path: UrlPath
@@ -119,7 +119,7 @@ export interface ServerSettings {
     jsonParser: boolean
     urlencoded: boolean
     errorLogger(errorMessage: string): void
-    responseStructure(data: unknown, status: number, message?: string): object
+    responseStructure(status: number, data?: unknown, message?: string): object
     errorResponseStructure(message: string, status: number): object
     ipv4Parser: boolean
     xssProtection: boolean
