@@ -4,6 +4,7 @@ import { Server } from 'http'
 import { CreateServer, ServerSettings } from '@types'
 import { runningMessage } from '@messages'
 import { setupMiddlewares } from './utils/setupMiddlewares'
+import { router } from '@/router/router'
 
 export const defaultSettings: ServerSettings = {
     docs: true,
@@ -32,15 +33,17 @@ export const defaultSettings: ServerSettings = {
  * @returns {CreateServer} The server instance.
  */
 export function createServer(
-    settings: Partial<ServerSettings> = defaultSettings,
+    customSettings: Partial<ServerSettings> = defaultSettings,
 ): CreateServer {
     const app = express()
+
+    const settings = {...defaultSettings, ...customSettings}
 
     // Middlewares
     setupMiddlewares(app, settings)
 
     // Router
-    // TODO: implement a router
+    if (settings.endpoints) app.use(router(settings.endpoints))
 
     let server: Server | null = null
 
@@ -73,5 +76,3 @@ export function createServer(
         app,
     }
 }
-
-createServer().start()

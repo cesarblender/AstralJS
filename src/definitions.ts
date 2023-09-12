@@ -14,29 +14,6 @@ export interface CreateServer {
     app: Application
 }
 
-export interface ServerSettings {
-    port: number
-    docs: boolean
-    docsPath: string
-    requestLogger: boolean
-    jsonParser: boolean
-    urlencoded: boolean
-    errorLogger(errorMessage: string): void
-    responseStructure(data: unknown, status: number, message?: string): object
-    errorResponseStructure(message: string, status: number): object
-    ipv4Parser: boolean
-    xssProtection: boolean
-    sqlInjectionProtection: boolean
-    helmet: boolean
-    compression: boolean
-    helmetSettings?: Readonly<HelmetOptions>
-    compressionSettings?: CompressionOptions
-    static?: {
-        path: string
-        settings: ExpressStaticGzipOptions
-    }
-}
-
 export type Request = ExpressRequest & { ipv4?: string }
 
 export type Middleware = (
@@ -97,8 +74,8 @@ export enum HTTPStatus {
 export type UrlPath = string & { __pathBrand: true }
 
 export interface ControllerResponse {
-    message: string
     status: HTTPStatus
+    message?: string
     data?: object
     redirect?: UrlPath
 }
@@ -132,4 +109,28 @@ export type EndpointType<BodyType> = ControllerSettings & {
 export interface EndpointParams<BodyType> {
     settings: ControllerSettings
     controller: Controller<BodyType>
+}
+
+export interface ServerSettings {
+    port: number
+    docs: boolean
+    docsPath: string
+    requestLogger: boolean
+    jsonParser: boolean
+    urlencoded: boolean
+    errorLogger(errorMessage: string): void
+    responseStructure(data: unknown, status: number, message?: string): object
+    errorResponseStructure(message: string, status: number): object
+    ipv4Parser: boolean
+    xssProtection: boolean
+    sqlInjectionProtection: boolean
+    helmet: boolean
+    compression: boolean
+    helmetSettings?: Readonly<HelmetOptions>
+    compressionSettings?: CompressionOptions
+    static?: {
+        path: string
+        settings: ExpressStaticGzipOptions
+    }
+    endpoints?: EndpointType<object>[]
 }
