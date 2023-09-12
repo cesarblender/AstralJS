@@ -3,6 +3,7 @@ import { Router } from 'express'
 import { EndpointType } from '@types'
 import { validateBody } from '@/utils/validateBody'
 import { ValidationError } from '@/errors'
+import { parseUrl } from '@/utils/parseUrl'
 
 export function router(
     endpoints: EndpointType<object>[],
@@ -18,15 +19,17 @@ export function router(
 ): Router {
     const router = Router()
 
-    if (useDocs && docsPath) router.get(docsPath, (req, res) => {
-        res.json(endpoints)
-    })
+    if (useDocs && docsPath)
+        router.get(docsPath, (req, res) => {
+            res.json(endpoints)
+        })
 
     endpoints.forEach((endpoint) => {
         // TODO: add a middleware to protect with jwt in case of having the setting protected: true
-        // TODO: add a api version header to handle it
         router[endpoint.method](
-            endpoint.path,
+            endpoint.version
+                ? parseUrl(endpoint.version.toString(), endpoint.path)
+                : endpoint.path,
             ...(endpoint.middlewares ?? []),
             async (req, res) => {
                 try {
@@ -63,7 +66,12 @@ export function router(
                     if (error instanceof ValidationError) {
                         return res
                             .status(401)
-                            .json(errorResponseStructure((error as ValidationError).message, 401))
+                            .json(
+                                errorResponseStructure(
+                                    (error as ValidationError).message,
+                                    401,
+                                ),
+                            )
                     }
 
                     errorLogger(error as string)
