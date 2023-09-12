@@ -1,11 +1,13 @@
 __tests__/
 src/
+demo/
 .github/
+.husky/
 
 jest.config.js
 .eslintrc.js
 ROADMAP.md
-
-docs/
-!docs/dist/
-!docs/public/
+.prettierrc
+.eslintignore
+CHANGELOG.md
+.editorconfig
