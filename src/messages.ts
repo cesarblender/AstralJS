@@ -30,3 +30,12 @@ export function runningMessage(port: number): string {
 
     return messages.join('\n')
 }
+
+export const envErrorMessages = {
+    noDefaultValue: (key: string) =>
+        chalk.bgYellowBright(`❌ Failed to load env variable ${key}. No default value was defined.`),
+    usingDefaultValue: (key: string) =>
+        chalk.bgYellowBright(`⚠ Using default value for ${key} env variable.`),
+    notDefinedInEnv: (key: string) =>
+        chalk.bgYellowBright(`⚠ The variable ${key} is not defined in environment variables.`),
+}
