@@ -16,7 +16,7 @@ export const defaultSettings: ServerSettings = {
     jsonParser: true,
     port: 3000,
     requestLogger: true,
-    responseStructure(data, status, message) {
+    responseStructure(status, data, message) {
         return { data, status, message }
     },
     urlencoded: true,
@@ -37,13 +37,21 @@ export function createServer(
 ): CreateServer {
     const app = express()
 
-    const settings = {...defaultSettings, ...customSettings}
+    const settings = { ...defaultSettings, ...customSettings }
 
     // Middlewares
     setupMiddlewares(app, settings)
 
     // Router
-    if (settings.endpoints) app.use(router(settings.endpoints))
+    if (settings.endpoints)
+        app.use(
+            router(
+                settings.endpoints,
+                settings.errorLogger,
+                settings.errorResponseStructure,
+                settings.responseStructure,
+            ),
+        )
 
     let server: Server | null = null
 

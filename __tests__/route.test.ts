@@ -2,21 +2,11 @@ import request from 'supertest'
 import { createServer } from '@/server'
 import { get } from '@/router/methods'
 import { CreateServer, UrlPath } from '@/definitions'
-import { router } from '@/router/router'
 
 describe('Server Integration Test', () => {
     let server: CreateServer
 
     beforeEach(() => {
-        server = createServer()
-    })
-
-    afterEach((done) => {
-        server.stop()
-        done()
-    })
-
-    it('should handle GET request with /test', async () => {
         const endpoint = get({
             settings: { path: '/test' as UrlPath },
             controller: () => {
@@ -28,7 +18,15 @@ describe('Server Integration Test', () => {
             },
         })
 
-        server.app.use(router([endpoint]))
+        server = createServer({endpoints: [endpoint]})
+    })
+
+    afterEach((done) => {
+        server.stop()
+        done()
+    })
+
+    it('should handle GET request with /test', async () => {
 
         const response = await request(server.app).get('/test')
 

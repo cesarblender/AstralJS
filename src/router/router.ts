@@ -2,7 +2,16 @@ import { Router } from 'express'
 
 import { EndpointType } from '@types'
 
-export function router(endpoints: EndpointType<object>[]): Router {
+export function router(
+    endpoints: EndpointType<object>[],
+    errorLogger: (errorMessage: string) => void,
+    errorResponseStructure: (message: string, status: number) => object,
+    responseStructure: (
+        status: number,
+        data?: unknown,
+        message?: string,
+    ) => object,
+): Router {
     const router = Router()
 
     endpoints.forEach((endpoint) => {
@@ -13,28 +22,43 @@ export function router(endpoints: EndpointType<object>[]): Router {
             endpoint.path,
             ...(endpoint.middlewares ?? []),
             async (req, res) => {
-                const controllerResponse = await endpoint.controller({
-                    body: req.body,
-                    req,
-                    res,
-                })
-                if (
-                    typeof controllerResponse === 'object' &&
-                    controllerResponse !== null
-                ) {
-                    if (controllerResponse.redirect) {
-                        return res.redirect(
-                            controllerResponse.status,
-                            controllerResponse.redirect,
-                        )
-                    }
-
-                    // TODO: use setting's handleData function to return data
-                    return res.status(controllerResponse.status).json({
-                        message: controllerResponse.message,
-                        data: controllerResponse.data,
-                        status: controllerResponse.status,
+                try {
+                    const controllerResponse = await endpoint.controller({
+                        body: req.body,
+                        req,
+                        res,
                     })
+                    if (
+                        typeof controllerResponse === 'object' &&
+                        controllerResponse !== null
+                    ) {
+                        if (controllerResponse.redirect) {
+                            return res.redirect(
+                                controllerResponse.status,
+                                controllerResponse.redirect,
+                            )
+                        }
+
+                        return res
+                            .status(controllerResponse.status)
+                            .json(
+                                responseStructure(
+                                    controllerResponse.status,
+                                    controllerResponse.data,
+                                    controllerResponse.message,
+                                ),
+                            )
+                    }
+                } catch (error) {
+                    errorLogger(error as string)
+                    return res
+                        .status(500)
+                        .json(
+                            errorResponseStructure(
+                                'Internal server error',
+                                500,
+                            ),
+                        )
                 }
             },
         )
