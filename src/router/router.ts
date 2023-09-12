@@ -1,6 +1,8 @@
 import { Router } from 'express'
 
 import { EndpointType } from '@types'
+import { validateBody } from '@/utils/validateBody'
+import { ValidationError } from '@/errors'
 
 export function router(
     endpoints: EndpointType<object>[],
@@ -17,17 +19,19 @@ export function router(
     endpoints.forEach((endpoint) => {
         // TODO: add a middleware to protect with jwt in case of having the setting protected: true
         // TODO: add a api version header to handle it
-        // TODO: validate body with endpoint.bodyScheme
         router[endpoint.method](
             endpoint.path,
             ...(endpoint.middlewares ?? []),
             async (req, res) => {
                 try {
+                    if (endpoint.bodySchema)
+                        validateBody(req.body, endpoint.bodySchema)
                     const controllerResponse = await endpoint.controller({
                         body: req.body,
                         req,
                         res,
                     })
+
                     if (
                         typeof controllerResponse === 'object' &&
                         controllerResponse !== null
@@ -50,6 +54,12 @@ export function router(
                             )
                     }
                 } catch (error) {
+                    if (error instanceof ValidationError) {
+                        return res
+                            .status(401)
+                            .json(errorResponseStructure((error as ValidationError).message, 401))
+                    }
+
                     errorLogger(error as string)
                     return res
                         .status(500)

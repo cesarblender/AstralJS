@@ -23,7 +23,8 @@
             "@utils/*": ["src/utils/*"],
             "@types": ["src/definitions"],
             "@messages": ["src/messages"],
-            "@server": ["src/server"]
+            "@server": ["src/server"],
+            "@errors": ["src/errors"]
         }
     },
     "compileOnSave": true,
