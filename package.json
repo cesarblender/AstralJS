@@ -9,7 +9,7 @@
         "lint": "eslint src/**",
         "build": "tsc -p ./tsconfig.build.json",
         "format": "prettier . --write",
-        "postinstall": "husky install"
+        "dev:postinstall": "husky install"
     },
     "bin": {
         "astral-dev": "./src/commands/devServer.js"
