@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import nodemon from 'nodemon'
-import chalk from 'chalk'
+/* eslint-disable @typescript-eslint/no-var-requires */
+const nodemon = require('nodemon')
+const chalk = require('chalk')
 
 nodemon({
     script: 'src/server.ts',
