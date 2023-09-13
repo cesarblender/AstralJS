@@ -15,11 +15,11 @@
         "astral-dev": "./src/commands/devServer.js"
     },
     "repository": {
-        "url": "https://github.com/seokkuuu/AstralJS",
+        "url": "https://github.com/cesarblender/AstralJS",
         "type": "git"
     },
     "displayName": "AstralJS",
-    "homepage": "https://github.com/seokkuuu/AstralJS/wiki/Getting-Started",
+    "homepage": "https://github.com/cesarblender/AstralJS/wiki/Getting-Started",
     "packageManager": "pnpm@8.6.12",
     "readme": "./README.md",
     "keywords": [
@@ -30,7 +30,7 @@
         "documentation",
         "express"
     ],
-    "author": "seokkuuu",
+    "author": "cesarblender",
     "license": "MIT",
     "devDependencies": {
         "@commitlint/cli": "^17.7.1",
