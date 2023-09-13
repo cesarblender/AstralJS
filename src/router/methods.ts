@@ -1,4 +1,4 @@
-import { EndpointType, EndpointParams, HTTPMethods } from '@/definitions'
+import { EndpointType, EndpointParams, HTTPMethods } from '../definitions'
 
 function get<BodyType>(
     endpointParams: EndpointParams<BodyType>,

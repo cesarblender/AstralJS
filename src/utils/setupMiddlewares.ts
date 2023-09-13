@@ -3,11 +3,11 @@ import helmet from 'helmet'
 import compression from 'compression'
 import expressStaticGzip from 'express-static-gzip'
 
-import { ServerSettings } from '@types'
-import { requestLogger } from '@middlewares/requestLogger'
-import { ipv4Parser } from '@middlewares/ipv4Parser'
-import { xssProtection } from '@middlewares/xssProtection'
-import { sqlInjectionProtection } from '@middlewares/sqlInjectionProtection'
+import { ServerSettings } from '../definitions'
+import { requestLogger } from '../middlewares/requestLogger'
+import { ipv4Parser } from '../middlewares/ipv4Parser'
+import { xssProtection } from '../middlewares/xssProtection'
+import { sqlInjectionProtection } from '../middlewares/sqlInjectionProtection'
 
 /**
  * Setup server middlewares.

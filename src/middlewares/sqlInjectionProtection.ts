@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express'
 
-import { Request } from '@/definitions'
+import { Request } from '../definitions'
 
 export function sqlInjectionProtection(
     req: Request,

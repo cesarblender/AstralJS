@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
-import { EndpointType } from '@types'
-import { validateBody } from '@/utils/validateBody'
-import { ValidationError } from '@/errors'
-import { parseUrl } from '@/utils/parseUrl'
+import { EndpointType } from '../definitions'
+import { validateBody } from '../utils/validateBody'
+import { ValidationError } from '../errors'
+import { parseUrl } from '../utils/parseUrl'
 
 export function router(
     endpoints: EndpointType<object>[],

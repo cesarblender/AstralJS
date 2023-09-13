@@ -1,4 +1,4 @@
-import { ValidationError } from '@/errors'
+import { ValidationError } from '../errors'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export function validateBody(

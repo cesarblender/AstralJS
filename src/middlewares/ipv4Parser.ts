@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express'
 
-import { Request } from '@types'
+import { Request } from '../definitions'
 
 export function ipv4Parser(req: Request, res: Response, next: NextFunction) {
     let clientIP = req.ip

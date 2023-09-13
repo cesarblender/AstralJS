@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { getLocalIpAddress } from '@utils/getLocalIp'
+import { getLocalIpAddress } from './utils/getLocalIp'
 
 /**
  * Generate a message indicating that the server is running.

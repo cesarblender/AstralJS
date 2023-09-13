@@ -1,5 +1,5 @@
-import { CreateServer } from '@/definitions'
-import { createServer, defaultSettings } from '@/server'
+import { CreateServer } from '../src/definitions'
+import { createServer, defaultSettings } from '../src/server'
 import request from 'supertest'
 
 describe('createServer', () => {

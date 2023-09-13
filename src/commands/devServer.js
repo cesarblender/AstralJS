@@ -7,7 +7,7 @@ nodemon({
     script: 'src/server.ts',
     ext: 'ts',
     watch: ['src'],
-    exec: 'ts-node -r tsconfig-paths/register',
+    exec: 'ts-node',
     delay: 1000,
 })
 

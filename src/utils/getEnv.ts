@@ -1,5 +1,5 @@
-import { envErrorMessages } from '@/messages'
-import { EnvError } from '@errors'
+import { envErrorMessages } from '../messages'
+import { EnvError } from '../errors'
 
 /**
  * Retrieves the value of an environment variable or a default value if not defined.

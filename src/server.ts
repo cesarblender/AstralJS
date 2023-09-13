@@ -1,10 +1,10 @@
 import express from 'express'
 import { Server } from 'http'
 
-import { CreateServer, ServerSettings } from '@types'
-import { runningMessage } from '@messages'
+import { CreateServer, ServerSettings } from './definitions'
+import { runningMessage } from './messages'
 import { setupMiddlewares } from './utils/setupMiddlewares'
-import { router } from '@/router/router'
+import { router } from './router/router'
 
 export const defaultSettings: ServerSettings = {
     docs: true,

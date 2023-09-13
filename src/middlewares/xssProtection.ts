@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express'
 import xss from 'xss'
 
-import { Request } from '@/definitions'
+import { Request } from '../definitions'
 
 export function xssProtection(req: Request, res: Response, next: NextFunction) {
     req.body = sanitizeRequestData(req.body)

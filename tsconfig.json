@@ -5,26 +5,17 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "esModuleInterop": true,
-        "module": "AMD",
+        "module": "CommonJS",
         "moduleResolution": "node",
-        "resolveJsonModule": true,
+        "isolatedModules": true,
         "baseUrl": ".",
         "noFallthroughCasesInSwitch": true,
         "outDir": "./dist",
-        "outFile": "./dist/index.js",
+        "declarationDir": "./dist/types",
         "declaration": true,
         "declarationMap": true,
         "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "paths": {
-            "@/*": ["src/*"],
-            "@middlewares/*": ["src/middlewares/*"],
-            "@utils/*": ["src/utils/*"],
-            "@types": ["src/definitions"],
-            "@messages": ["src/messages"],
-            "@server": ["src/server"],
-            "@errors": ["src/errors"]
-        }
+        "experimentalDecorators": true
     },
     "compileOnSave": true,
     "include": ["."]

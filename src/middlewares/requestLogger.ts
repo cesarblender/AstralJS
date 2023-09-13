@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express'
 import chalk from 'chalk'
 
-import { Request } from '@types'
+import { Request } from '../definitions'
 
 export function requestLogger(req: Request, res: Response, next: NextFunction) {
     const start = Date.now()

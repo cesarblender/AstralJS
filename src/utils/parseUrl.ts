@@ -1,5 +1,5 @@
 import { posix } from 'path'
-import { UrlPath } from '@types'
+import { UrlPath } from '../definitions'
 
 export function parseUrl(path: string, ...subpaths: string[]): UrlPath {
     const joinedPath = posix.join(path, ...subpaths)

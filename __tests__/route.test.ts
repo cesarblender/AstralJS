@@ -1,7 +1,7 @@
 import request from 'supertest'
-import { createServer } from '@/server'
-import { get } from '@/router/methods'
-import { CreateServer, UrlPath } from '@/definitions'
+import { createServer } from '../src/server'
+import { get } from '../src/router/methods'
+import { CreateServer, UrlPath } from '../src/definitions'
 
 describe('Server Integration Test', () => {
     let server: CreateServer
