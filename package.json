@@ -3,7 +3,6 @@
     "version": "2.0.2",
     "description": "A library to create secure API Rest fastly",
     "main": "dist/index.js",
-    "types": "dist/index.d.ts",
     "scripts": {
         "test": "jest",
         "lint": "eslint src/**",
