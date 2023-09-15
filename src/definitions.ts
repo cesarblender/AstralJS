@@ -80,7 +80,7 @@ export interface ControllerResponse {
     redirect?: UrlPath
 }
 
-export type Controller<BodyType> = (
+export type Controller<BodyType = null> = (
     props: ControllerProperties<BodyType>,
 ) => ControllerResponse | Promise<ControllerResponse> | void | Promise<void>
 
@@ -105,6 +105,8 @@ export type EndpointType<BodyType> = ControllerSettings & {
     controller: Controller<BodyType>
     method: HTTPMethods
 }
+
+export type Endpoints = EndpointType<never>[]
 
 export interface EndpointParams<BodyType> {
     settings: ControllerSettings

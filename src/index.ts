@@ -10,6 +10,7 @@ export type {
     ControllerSettings,
     EndpointParams,
     EndpointType,
+    Endpoints,
     HTTPMethods,
     Middleware,
     UrlPath,
