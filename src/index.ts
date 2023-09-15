@@ -11,10 +11,10 @@ export type {
     EndpointParams,
     EndpointType,
     HTTPMethods,
-    HTTPStatus,
     Middleware,
     UrlPath,
 } from './definitions'
+export { HTTPStatus } from './definitions'
 export { ipv4Parser } from './middlewares/ipv4Parser'
 export { requestLogger } from './middlewares/requestLogger'
 export { sqlInjectionProtection } from './middlewares/sqlInjectionProtection'
